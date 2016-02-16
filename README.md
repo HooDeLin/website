@@ -2,11 +2,11 @@
 This repo hosts the source code for the CS2103 (Software Engineering) module at [SoC (NUS)](http://www.comp.nus.edu.sg)
 
 ## Released version
-The **released version** of this website is available [here](http://www.comp.nus.edu.sg/~cs2103/trial). 
+The **released version** of this website is available [here](http://www.comp.nus.edu.sg/~cs2103/). 
 The released version may be behind the latest version in this repo.
 
 ## Contributing
-**We wecome contributions from current/past CS2103 students**. 
+**We welcome contributions from current/past CS2103 students**. 
 
 The easiest way to contribute is to post bugs and suggestion in our issue tracker.
 
@@ -29,7 +29,7 @@ If you would like to contribute code, here is the procedure:
      TEAMMATES project:
      [JavaScript](https://docs.google.com/document/d/1gZ6WG6HBTJYHAtVkz9kzi_SUuzfXqzO-SvFnLuag2xM/pub?embedded=true),
      [CSS](https://docs.google.com/document/d/1wA9paRA9cS7ByStGbhRRUZLEzEzimrNQjIDPVqy1ScI/pub), 
-     [HTML](https://docs.google.com/document/d/12PJYbQoqjK-0LzaUuguQ4kGE--eikCcHfwzZDGwFOJ0/pub?embedded=true)
+     [HTML](https://cdn.rawgit.com/nus-cs2103/website/master/contents/coding-standards-html.html)
 6. Test the code in your computer. <br>
    Tip: When testing local html files, some JavaScripts might not work
    in Firefox or Chrome. In that case you can use IE. Alternatively, you can [start a web server

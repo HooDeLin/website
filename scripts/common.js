@@ -26,7 +26,7 @@ function getContentUsingAjax(fileName, elementSelector, sectionName) {
 
 function pullContent(fileName, elementSelector, title, sectionName) {
     var toBeLoaded = fileName + '.html' + (sectionName == undefined ? '' : ' #' + sectionName);
-
+    $(elementSelector).html('<img class="embedded-link-loading-img" src="../images/ajax-preload.gif" alt="Loading...">');
     $(elementSelector).load(toBeLoaded, function(response, status, xhr) {
         if (status == 'success') {
             $(elementSelector).addClass('embedded');
@@ -200,13 +200,30 @@ function loadContent(week) {
                 var component = components[i];
                 makeAccordion('.' + component + '-week' + week);
                 addCollapseAndExpandButtonsForComponents('#' + component + '-content-week' + week, component + '-week' + week);
+               
+                var componentToBeOpened = '#' + component + '-content-week' + week;
+                addAutoExpandSubheadingsBehaviour(componentToBeOpened);
             }
+
             $('.preferences').each(function() {
                 var type = $(this).prop('value');
                 if (!$(this).prop('checked')) {
                     $('.' + type + '.content-week' + week).hide();
                 }
             });
+        }
+    });
+}
+
+function addAutoExpandSubheadingsBehaviour(component) {
+    $(component).click(function(e) {
+        var id = e.currentTarget.id;
+        var componentNameAndWeek = id.split('-content-');
+        var componentName = componentNameAndWeek[0];
+        var week = componentNameAndWeek[1];
+        var buttonId = '#expand-' + componentName +'-' + week;
+        if ($('#' + id).hasClass('ui-accordion-header-active')) {
+            $(buttonId).click();
         }
     });
 }
@@ -239,11 +256,19 @@ function getDate(week, day) {
 }
 
 function addAutoScrollToClickedWeekHeader() {
+    var isAnimating = false;
     $('.buttoned').click(function(event) {
+        // Don't scroll when an animation is in progress
+        if (isAnimating) {
+            return;
+        }
         var scrollTarget = '#' + event.currentTarget.id;
+        isAnimating = true;
         $('html, body').animate({
             scrollTop: $(scrollTarget).offset().top 
-        }, 500);
+        }, 500, function() { // Complete callback function
+            isAnimating = false;
+        });
     });
 }
 
@@ -264,7 +289,7 @@ $(document).ready(function() {
     $('#content').css('height', 'auto');
 
     for (var week = 0; week <= 14; week++) {
-        $('#content-week' + week).html('<img height="40" width="40" class="margin-center-horizontal" src="/images/ajax-preload.gif"/>');
+        $('#content-week' + week).html('<img height="40" width="40" class="margin-center-horizontal" src="../images/ajax-preload.gif"/>');
         loadContent(week);
     }
 
